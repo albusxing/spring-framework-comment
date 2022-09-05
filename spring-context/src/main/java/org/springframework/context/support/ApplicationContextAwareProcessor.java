@@ -78,6 +78,9 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 	@Override
 	@Nullable
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		// 专门用来处理这6个感知接口的实现类
+		// EnvironmentAware、EmbeddedValueResolverAware、ResourceLoaderAware
+		// ApplicationEventPublisherAware、MessageSourceAware、ApplicationContextAware
 		if (!(bean instanceof EnvironmentAware || bean instanceof EmbeddedValueResolverAware ||
 				bean instanceof ResourceLoaderAware || bean instanceof ApplicationEventPublisherAware ||
 				bean instanceof MessageSourceAware || bean instanceof ApplicationContextAware)){
@@ -97,6 +100,7 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 			}, acc);
 		}
 		else {
+			// 调用感知接口
 			invokeAwareInterfaces(bean);
 		}
 
