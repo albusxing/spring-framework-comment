@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+	<bean id="student" class="com.albusxing.showcase.spring.beanfactory.Student">
+		<property name="code" value="001"/>
+		<property name="name" value="lgq"/>
+		<property name="age" value="18"/>
+	</bean>
+
+
+	<bean id="studentWithAware" class="com.albusxing.showcase.spring.beanfactory.StudentWithAware">
+		<property name="code" value="001"/>
+		<property name="name" value="lgq"/>
+		<property name="age" value="18"/>
+		<property name="beanName" value="myBeanName"/>
+	</bean>
+
+
+	<bean id="beanNameAwareImpl" class="com.albusxing.showcase.spring.beanfactory.BeanNameAwareImpl">
+		<property name="beanName" value="myBeanNameAwareImpl001"/>
+	</bean>
+
+
+	<bean id="book" class="com.albusxing.showcase.spring.beanfactory.Book">
+		<constructor-arg name="title" value="Spring实战"/>
+		<constructor-arg name="author" value="Davis"/>
+	</bean>
+</beans>

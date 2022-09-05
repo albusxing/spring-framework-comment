@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'org.springframework'
+version '5.2.6.RELEASE'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    compile(project(":spring-context"))
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// 解决：忽略过时的API错误
+configure(allprojects) { project ->
+    compileJava.options*.compilerArgs =
+            ["-Xlint:varargs", "-Xlint:fallthrough", "-Xlint:rawtypes", "-Xlint:deprecation", "-Xlint:unchecked"]
+}
