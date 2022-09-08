@@ -718,6 +718,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	}
 
 	/**
+	 * 通过这个方法可以修改 ApplicationContext内部的BeanFactory
+	 * 在applicationContext初始化完成后，所有的Bean都被初始化了，封装成BeanDefinition注册到spring容器中了
+	 * 但是这些 bean还没有实例化。通过实现这个方法，可以让我们自己可以修改spring容器中的beanFactory
 	 * Modify the application context's internal bean factory after its standard
 	 * initialization. All bean definitions will have been loaded, but no beans
 	 * will have been instantiated yet. This allows for registering special
@@ -728,11 +731,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	}
 
 	/**
+	 * 实例化并调用已经注册的BeanFactory后置处理器
 	 * Instantiate and invoke all registered BeanFactoryPostProcessor beans,
 	 * respecting explicit order if given.
 	 * <p>Must be called before singleton instantiation.
 	 */
 	protected void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory beanFactory) {
+		// 先获取所有的BeanFactory后置处理器
+		// 然后使用 PostProcessorRegistrationDelegate 调用执行所有的处理器
 		PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(beanFactory, getBeanFactoryPostProcessors());
 
 		// Detect a LoadTimeWeaver and prepare for weaving, if found in the meantime

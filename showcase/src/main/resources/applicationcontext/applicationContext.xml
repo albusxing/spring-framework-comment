@@ -11,4 +11,7 @@
 		<constructor-arg name="author" value="Davis"/>
 	</bean>
 
+
+	<bean id="myBeanFactoryPostProcessor" class="com.albusxing.showcase.spring.applicationcontext.MyBeanFactoryPostProcessor"/>
+
 </beans>
